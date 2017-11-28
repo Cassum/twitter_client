@@ -9,5 +9,6 @@ setup(
         'pytest',
         'python-twitter',
         'pyyaml',
+        'termcolor',
     ],
 )
