@@ -2,6 +2,8 @@
 import yaml
 
 from twit_cli.api import API
+from twit_cli.tweet import Tweet
+from twit_cli.tweet_renderer import TweetRenderer
 
 
 if __name__ == '__main__':
@@ -13,4 +15,5 @@ if __name__ == '__main__':
         access_token_secret=credentials['access_token_secret'],
     )
     for tw in reversed(api.get_timeline(20)):
-        print('{:16} {}'.format(tw.user.screen_name, tw.text))
+        tweet = Tweet(tw.user.screen_name, tw.text)
+        print(TweetRenderer.render(tweet))
