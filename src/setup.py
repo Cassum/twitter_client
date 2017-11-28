@@ -8,5 +8,6 @@ setup(
     install_requires=[
         'pytest',
         'python-twitter',
+        'pyyaml',
     ],
 )
