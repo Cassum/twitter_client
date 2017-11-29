@@ -43,6 +43,8 @@ class CursesUI:
         curses.start_color()
         curses.noecho()
         curses.use_default_colors()
+        self.screen.scrollok(True)
+        self.screen.idlok(True)
         self._init_color_pairs()
         self.refresh()
 
