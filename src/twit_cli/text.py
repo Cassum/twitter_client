@@ -1,8 +1,36 @@
 class Color:
     name = 'default'
 
+class Black(Color):
+    name = 'black'
+
+
+class Red(Color):
+    name = 'red'
+
+
 class Green(Color):
     name = 'green'
+
+
+class Yellow(Color):
+    name = 'yellow'
+
+
+class Blue(Color):
+    name = 'blue'
+
+
+class Magenta(Color):
+    name = 'magenta'
+
+
+class Cyan(Color):
+    name = 'cyan'
+
+
+class White(Color):
+    name = 'white'
 
 
 class TextItem:
