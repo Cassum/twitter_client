@@ -11,9 +11,9 @@ def test_it_renders_single_line_tweets():
 
     expected = Text(
         '         ',
-        Green,
+        Green(),
         'fooser',
-        Default,
+        Default(),
         ' ',
         'this is a tweet',
     )
@@ -28,9 +28,9 @@ def test_it_renders_multiline_tweets():
 
     expected = Text(
         '         ',
-        Green,
+        Green(),
         'fooser',
-        Default,
+        Default(),
         ' ',
         'this is a tweet',
         '\n                with two lines',

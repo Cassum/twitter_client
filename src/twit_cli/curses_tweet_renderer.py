@@ -8,9 +8,9 @@ class CursesTweetRenderer:
         spacing = ' ' * (15 - len(tweet.author))
         result = Text(
             spacing,
-            Green,
+            Green(),
             tweet.author,
-            Default,
+            Default(),
             ' ',
             lines[0],
         )

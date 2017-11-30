@@ -3,6 +3,15 @@ from itertools import chain
 class Color:
     name = 'default'
 
+    def __init__(self, modificators=None):
+        self.modificators = modificators or []
+
+    def __eq__(self, other):
+        return (
+            self.name == other.name
+            and self.modificators == other.modificators
+        )
+
 Default = Color
 
 
@@ -55,7 +64,7 @@ class TextItem:
 
 class Text:
     def __init__(self, *args):
-        color = Color
+        color = Default()
         _text = []
         for item in args:
             if isinstance(item, str):
@@ -79,7 +88,7 @@ class Text:
     def __add__(self, other):
         if not isinstance(other, Text):
             raise TypeError()
-        color = Default
+        color = Default()
         result = []
         for item in chain(self._text, other._text):
             if item.color != color:

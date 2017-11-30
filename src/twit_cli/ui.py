@@ -27,15 +27,15 @@ class CursesUI:
         curses.init_pair(6, curses.COLOR_MAGENTA, -1),
         curses.init_pair(7, curses.COLOR_WHITE, -1),
         self.color_pairs = {
-            Default: curses.A_NORMAL,
-            Black: 0,
-            Red: curses.color_pair(1),
-            Green: curses.color_pair(2),
-            Yellow: curses.color_pair(3),
-            Blue: curses.color_pair(4),
-            Cyan: curses.color_pair(5),
-            Magenta: curses.color_pair(6),
-            White: curses.color_pair(7),
+            Default.name: curses.A_NORMAL,
+            Black.name: 0,
+            Red.name: curses.color_pair(1),
+            Green.name: curses.color_pair(2),
+            Yellow.name: curses.color_pair(3),
+            Blue.name: curses.color_pair(4),
+            Cyan.name: curses.color_pair(5),
+            Magenta.name: curses.color_pair(6),
+            White.name: curses.color_pair(7),
         }
 
     def init_ui(self):
@@ -73,7 +73,10 @@ class CursesUI:
 
     def print_text(self, text):
         for item in text:
-            self.screen.addstr(item.text, self.color_pairs[item.color])
+            color = self.color_pairs[item.color.name]
+            for mod in color.modificators:
+                color |= mod
+            self.screen.addstr(item.text, color)
         self.screen.addstr('\n')
         self.refresh()
 
