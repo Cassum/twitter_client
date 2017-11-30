@@ -74,7 +74,7 @@ class CursesUI:
     def print_text(self, text):
         for item in text:
             color = self.color_pairs[item.color.name]
-            for mod in color.modificators:
+            for mod in item.color.modificators:
                 color |= mod
             self.screen.addstr(item.text, color)
         self.screen.addstr('\n')

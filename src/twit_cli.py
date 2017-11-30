@@ -31,7 +31,7 @@ if __name__ == '__main__':
     )
     with CursesUI() as ui:
         for tweet in timeline.tweets:
-            ui.print_text(CursesTweetRenderer.render(tweet))
+            ui.print_text(CursesTweetRenderer.render(tweet, True))
         for ch in ui.loop():
             if ord('q') == ch:
                 break
