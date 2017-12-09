@@ -35,7 +35,8 @@ def test_it_renders_multiline_tweets():
         Default(),
         ' ',
         'this is a tweet',
-        '\n                with two lines',
+        '\n                ',
+        'with two lines',
     )
     assert expected == CursesTweetRenderer.render(tweet)
 
@@ -54,5 +55,27 @@ def test_it_underlines_selected_tweets():
         ' ',
         Default([curses.A_UNDERLINE]),
         'this is a tweet',
+    )
+    assert expected == CursesTweetRenderer.render(tweet, selected=True)
+
+
+def test_it_underlines_selected_tweets_for_multiline_tweets():
+    tweet = Tweet(
+        'fooser',
+        'this is a\nmultiline tweet',
+    )
+
+    expected = Text(
+        '         ',
+        Green(),
+        'fooser',
+        Default(),
+        ' ',
+        Default([curses.A_UNDERLINE]),
+        'this is a',
+        Default(),
+        '\n                ',
+        Default([curses.A_UNDERLINE]),
+        'multiline tweet',
     )
     assert expected == CursesTweetRenderer.render(tweet, selected=True)

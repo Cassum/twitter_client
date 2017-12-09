@@ -22,5 +22,10 @@ class CursesTweetRenderer:
             lines[0],
         )
         for line in lines[1:]:
-            result += Text(Default(modificators), '\n' + ' '*16 +  line)
+            result += Text(
+                Default(),
+                '\n' + ' '*16,
+                Default(modificators),
+                line,
+            )
         return result

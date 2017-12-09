@@ -56,8 +56,9 @@ class TextItem:
         return self.text == other.text and self.color == other.color
 
     def __repr__(self):
-        return '<{}: {}>'.format(
+        return '<{}, {}: {}>'.format(
             self.color.name,
+            self.color.modificators,
             repr(self.text),
         )
 
