@@ -50,8 +50,9 @@ def test_it_underlines_selected_tweets():
         '         ',
         Green(),
         'fooser',
-        Default([curses.A_UNDERLINE]),
+        Default(),
         ' ',
+        Default([curses.A_UNDERLINE]),
         'this is a tweet',
     )
-    assert expected == CursesTweetRenderer.render(tweet, True)
+    assert expected == CursesTweetRenderer.render(tweet, selected=True)

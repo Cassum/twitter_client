@@ -16,10 +16,11 @@ class CursesTweetRenderer:
             spacing,
             Green(),
             tweet.author,
-            Default(modificators),
+            Default(),
             ' ',
+            Default(modificators),
             lines[0],
         )
         for line in lines[1:]:
-            result += Text('\n' + ' '*16 + line)
+            result += Text(Default(modificators), '\n' + ' '*16 +  line)
         return result
