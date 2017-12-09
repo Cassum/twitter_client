@@ -78,7 +78,6 @@ class CursesUI:
                 color |= mod
             self.screen.addstr(item.text, color)
         self.screen.addstr('\n')
-        self.refresh()
 
 
     def clear(self):
