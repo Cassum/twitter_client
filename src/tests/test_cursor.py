@@ -21,3 +21,9 @@ def test_it_cant_go_over_limits():
 def test_it_shows_current_item():
     cur = Cursor(['foo', 'bar'], 1)
     assert cur.current == 'bar'
+
+
+def test_index_defaults_to_zero():
+    cur = Cursor(['foo', 'bar'])
+    assert cur.current == 'foo'
+    assert cur.index == 0

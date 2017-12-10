@@ -1,7 +1,7 @@
 class Cursor:
-    def __init__(self, items, index):
+    def __init__(self, items, index=None):
         self.items = items
-        self.index = index
+        self.index = index or 0
 
     def down(self):
         return Cursor(self.items, self.index + 1) \
