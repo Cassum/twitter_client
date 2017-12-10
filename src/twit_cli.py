@@ -29,20 +29,18 @@ def redraw(ui, tweets, cursor):
 def get_timeline(api):
     return Timeline(
         list(reversed(list(
-            Tweet(tw.user.screen_name, tw.text)
+            Tweet(tw.user.screen_name, tw.text, tw.id)
             for tw in api.get_timeline(100)
           )))
     )
 
 
-def schedule_timeline_update():
-    def autoupdate():
-        while True:
-            time.sleep(10)
-            curses.ungetch(ord('r'))
-    thread = threading.Thread(target=autoupdate, daemon=True)
-    thread.start()
-    return thread
+def find_cursor_position(old_cur, new_timeline):
+    id = old_cur.current.id
+    for i, tw in enumerate(new_timeline.tweets):
+        if tw.id == id:
+            return i
+    return len(new_timeline.tweets) - 1
 
 
 if __name__ == '__main__':
@@ -59,7 +57,6 @@ if __name__ == '__main__':
         access_token_secret=credentials['access_token_secret'],
     )
     timeline = get_timeline(api)
-    aupdate = schedule_timeline_update()
     with CursesUI() as ui:
         cursor = Cursor(timeline.tweets, len(timeline.tweets) - 1)
         redraw(ui, timeline.tweets, cursor)
@@ -72,7 +69,6 @@ if __name__ == '__main__':
                 cursor = cursor.up()
             elif ch == ord('r'):
                 timeline = get_timeline(api)
-                cursor = Cursor(timeline.tweets, len(timeline.tweets) - 1)
-            if not aupdate.is_alive():
-                break
+                cur_pos = find_cursor_position(cursor, timeline)
+                cursor = Cursor(timeline.tweets, cur_pos)
             redraw(ui, timeline.tweets, cursor)
