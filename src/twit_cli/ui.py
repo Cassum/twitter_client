@@ -77,9 +77,11 @@ class CursesUI:
             for mod in item.color.modificators:
                 color |= mod
             self.screen.addstr(item.text, color)
-        self.screen.addstr('\n')
-
 
     def clear(self):
         self.screen.erase()
         self.refresh()
+
+    @property
+    def max_width(self):
+        return self.screen.getmaxyx()[1] - 1

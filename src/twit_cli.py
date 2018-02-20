@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 import os
 import curses
-import threading
-import time
 
 import yaml
 
@@ -21,6 +19,7 @@ def redraw(ui, tweets, cursor):
             CursesTweetRenderer.render(
                 tweet,
                 cursor.current is tweet,
+                max_width=ui.max_width,
             ),
         )
     ui.refresh()
